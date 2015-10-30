@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-lg-12.col-md-12.col-sm-12
+        h1.big Intermezzo
+        h5 Modern, minimalist blogging.
+    div.row
+      div.col-lg-12.col-md-12.col-sm-12
+        br
+        div.form-inline
+          input.form-control(id="name", placeholder="Username")
+          div.input-group
+            input.form-control(type="password", id="password", placeholder="Password")
+            span.input-group-btn
+              button.btn.btn-primary
+                span.fa.fa-sign-in.fa-fw
+    div.row
+      br
+      div.col-lg-12.col-md-12.col-sm-12
+        a(href="/register")
+          small Register for a new account

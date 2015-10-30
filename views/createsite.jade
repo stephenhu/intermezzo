@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      br
+      div.col-lg-12.col-md-12.col-sm-12
+        div.btn-group.btn-group-sm(role="group")
+          button.btn.btn-default(type="button") Free domain
+          button.btn.btn-default(type="button") Custom domain
+    div.row
+      br
+      div.col-lg-5.col-md-5.col-sm-5
+        div.input-group
+          input.form-control(type="text", placeholder="Domain Name", id="name")
+          span.input-group-addon .intermezzo.io
+      div.col-lg-3.col-md-3.col-sm-3
+        h5 site exists
+    div.row
+      br
+      div.col-lg-4
+  include menubar

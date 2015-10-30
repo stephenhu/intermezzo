@@ -1,0 +1,26 @@
+// standard tags
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  color: #111111;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 200;
+}
+
+a, a:visited, a:hover, a:link {
+  text-decoration: none;
+}
+
+// custom classes
+
+.big {
+  font-size: 20em;
+}
+
+// bootstrap overides
+
