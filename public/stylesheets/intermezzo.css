@@ -5,7 +5,8 @@ html {
 }
 
 body {
-  color: #111111;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 h1, h2, h3, h4, h5 {
@@ -20,6 +21,37 @@ a, a:visited, a:hover, a:link {
 
 .big {
   font-size: 20em;
+}
+
+.grey {
+  color: #aaaaaa;  
+}
+
+.blue {
+  color: #0066ad;
+}
+
+.graphite {
+  color: #222222;
+}
+
+.bgdark {
+  background-color: #222222;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.padtb8 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.pad10 {
+  padding: 10px;
+}
+
+.pad20 {
+  padding: 20px;
 }
 
 // bootstrap overides
