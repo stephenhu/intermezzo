@@ -16,7 +16,7 @@ module.exports = {
         unique: true,
         allowNull: false
       },
-      password: {
+      hash: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -24,6 +24,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       token: {
+        type: Sequelize.STRING
+      },
+      github: {
         type: Sequelize.STRING
       },
       salt: {

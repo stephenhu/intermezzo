@@ -6,9 +6,10 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    hash: DataTypes.STRING,
     icon: DataTypes.STRING,
     token: DataTypes.STRING,
+    github: DataTypes.STRING,
     salt: DataTypes.STRING,
     mobile: DataTypes.STRING
   }, {
@@ -17,11 +18,11 @@ module.exports = function(sequelize, DataTypes) {
         
         user.salt = cryptolib.randomBytes(16).toString("hex");
         
-        var text = user.password + user.salt + Date.now();
+        var text = user.password + user.salt;
         var hmac = cryptolib.createHmac("sha512", "");
-        var hash = hmac.update(text).digest("hex");
+        var h = hmac.update(text).digest("hex");
         
-        user.password = hash.substring(0, 64);
+        user.hash = h.substring(0, 64);
         
       }
     },
