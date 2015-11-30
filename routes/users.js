@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var helper = require("./helper");
 var models = require("../models");
+
 
 /* create user */
 router.post('/', function(req, res, next) {
@@ -11,8 +13,8 @@ router.post('/', function(req, res, next) {
       where: {
         email: req.body.email
       },
-      default: {
-        password: req.body.password
+      defaults: {
+        hash: req.body.password
       }
     }).then(function(user) {
       

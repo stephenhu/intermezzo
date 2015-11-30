@@ -6,25 +6,28 @@ var models = require("../models");
 
 // login
 router.post('/', function(req, res, next) {
-  
+        
   if(req.body.email === null || req.body.password === null) {
     res.status(401).end();
   }
   else {
-    
+
     models.User
       .findOne({
-        where: {token: req.cookies.uhlelo}        
+        where: {email: req.body.email}        
       }).then(function(user) {
-        
+  
         if(user) {
           
-          helper.authenticate(req.body.email, req.body.password, function(user) {
-            console.log(user);
-            if(user) {
+          user.checkPassword(req.body.password, function(token) {
+            
+            if(token) {
               
-              res.cookie("uhlelo", helper.generateToken(user));
-              res.status(200).send({msg: "Authenticated"});
+                user.set("token", token);
+                user.save();
+                
+                res.cookie("uhlelo", token);
+                res.status(200).send({msg: "Authenticated"});
               
             }
             else {
@@ -35,12 +38,12 @@ router.post('/', function(req, res, next) {
           
         }
         else {
-          res.status(401)
+          res.status(401).send({msg: "Invalid credentials."});
         }
         
       });
   }
-  
+
 });
 
 // logout

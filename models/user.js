@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         
         user.salt = cryptolib.randomBytes(16).toString("hex");
         
-        var text = user.password + user.salt;
+        var text = user.hash + user.salt;
         var hmac = cryptolib.createHmac("sha512", "");
         var h = hmac.update(text).digest("hex");
         
@@ -29,6 +29,24 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+      }
+    },
+    instanceMethods: {
+      checkPassword: function(password, next) {
+        
+        var text = password + this.salt;
+        var hmac = cryptolib.createHmac("sha512", "");
+        var h = hmac.update(text).digest("hex");
+        
+        h = h.substring(0, 64);
+        
+        if(this.hash === h) {
+          next(h);
+        }
+        else {
+          next(null);
+        }
+        
       }
     }
   });
