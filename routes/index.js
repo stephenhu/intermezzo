@@ -69,4 +69,12 @@ router.get('/sites', function(req, res, next) {
   res.render('sites');
 });
 
+/* signout. */
+router.get('/signout', function(req, res, next) {
+
+  res.clearCookie("uhlelo");
+  res.redirect("/");
+      
+});
+
 module.exports = router;

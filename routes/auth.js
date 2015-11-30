@@ -49,32 +49,23 @@ router.post('/', function(req, res, next) {
 // logout
 router.delete('/', function(req, res, next) {
   
-  if(req.cookies.uhlelo === "TEST"){
-    
-    res.clearCookie("uhlelo");
-    res.status(200).send({msg: "Successfully logged out."});
-    
-  }
-  else {
-  
-    models.User
-      .findOne({
-        where: {token: req.cookies.newhire}
-      }).then(function(user) {
+  models.User
+    .findOne({
+      where: {token: req.cookies.newhire}
+    }).then(function(user) {
+      
+      if(user) {
         
-        if(user) {
-          
-          user.set("token", null);
-          user.save();
-          
-        }
+        user.set("token", null);
+        user.save();
         
-        res.clearCookie("uhlelo");
-        res.status(200).send({msg: "Successfully logged out."});
-        
-      });  
-  }
-  
+      }
+      
+      res.clearCookie("uhlelo");
+      res.status(200).send({msg: "Successfully logged out."});
+      
+    });
+
 });
 
 module.exports = router;
